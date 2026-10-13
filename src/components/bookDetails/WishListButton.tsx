@@ -5,7 +5,10 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 
 const WishListButton = ({ book }: { book: IBook }) => {
-  const { wishlistBooks, setWishlistBooks } = useContext(BooksContext);
+  const { wishlistBooks, setWishlistBooks } = useContext(BooksContext) as {
+    wishlistBooks: IBook[];
+    setWishlistBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
+  };
 
   const handleAddToWishList = () => {
     // Implement the logic to add the book to the wishlist here

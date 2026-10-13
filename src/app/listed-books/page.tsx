@@ -6,7 +6,12 @@ import { IBook } from '@/types/books.type';
 import ListedBooksCard from '@/components/share/ListedBooks';
 
 const ListedBooks = () => {
-  const { readBooks, wishlistBooks } = useContext(BooksContext);
+  const { readBooks, wishlistBooks } = useContext(
+    BooksContext as unknown as React.Context<{
+      readBooks: IBook[];
+      wishlistBooks: IBook[];
+    }>,
+  );
 
   const [shortBy, setShortBy] = React.useState<'rating' | 'pages' | 'year'>(
     'rating',
