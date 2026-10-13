@@ -3,10 +3,16 @@ import { IBook } from '@/types/books.type';
 
 const getBooks = async () => {
   'use cache';
-  const res = await fetch('http://localhost:3000/booksData.json');
-
-  const books = await res.json();
-  return books;
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/booksData.json`,
+    );
+    const books = await res.json();
+    return books;
+  } catch (error) {
+    console.error('Error fetching books data:', error);
+    return [];
+  }
 };
 
 const Books = async () => {
